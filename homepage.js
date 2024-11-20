@@ -1,80 +1,59 @@
-import React, { useState } from 'react';
-import { View, Text, Button, FlatList, StyleSheet } from 'react-native';
+import React from 'react';
+import { ScrollView, Text, Button, Image, StyleSheet } from 'react-native';
 
-function HomeScreen({ navigation }) {
-  const [menuItems, setMenuItems] = useState([]);
-
-  // Calculate average prices by course
-  const calculateAverages = () => {
-    const courses = ['Starters', 'Mains', 'Desserts'];
-    let averages = {};
-    courses.forEach(course => {
-      const items = menuItems.filter(item => item.course === course);
-      const total = items.reduce((sum, item) => sum + parseFloat(item.price || 0), 0);
-      averages[course] = items.length ? (total / items.length).toFixed(2) : 'N/A';
-    });
-    return averages;
-  };
-
-  const averages = calculateAverages();
+function HomeScreen({ route, navigation }) {
+  const { menuItems, setMenuItems } = route.params;  // Get menuItems and setMenuItems from route params
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Complete Menu</Text>
-      <FlatList
-        data={menuItems}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.itemContainer}>
-            <Text style={styles.itemName}>{item.name}</Text>
-            <Text>{item.description}</Text>
-            <Text>{item.course}</Text>
-            <Text>Price: {item.price}</Text>
-          </View>
-        )}
-      />
-      <Text style={styles.averageText}>Average Prices:</Text>
-      {Object.entries(averages).map(([course, avg]) => (
-        <Text key={course}>{`${course}: ${avg}`}</Text>
-      ))}
+    <ScrollView contentContainerStyle={styles.container}>
+      <Image style={styles.logo} source={require('./_img/food_logo2.png')} />
+      <Text style={styles.title}>
+        Welcome to Chritofells Delights. Please view the average price of our courses below
+      </Text>
+
+      {/* Calculate and display average prices */}
+      {['Starters', 'Mains', 'Desserts'].map((course) => {
+        const courseItems = menuItems.filter(item => item.course === course);
+        const average = (courseItems.reduce((acc, item) => acc + parseFloat(item.price), 0) / courseItems.length).toFixed(2);
+        return (
+          <Text key={course} style={styles.averageText}>
+            {course}: R{average}
+          </Text>
+        );
+      })}
+
       <Button
-        title="Add Items"
-        onPress={() => navigation.navigate('AddItems', { menuItems, setMenuItems })}
+        title="Go to Add Items"
+        color="#9c7c38"
+        onPress={() => navigation.navigate('Add', { menuItems, setMenuItems })}  // Pass params to Add screen
       />
-      <Button
-        title="Filter Menu"
-        onPress={() => navigation.navigate('FilterScreen', { menuItems })}
-      />
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 20,
+    backgroundColor: '#f8f8f8',
   },
-  header: {
+  logo: {
+    width: 150,
+    height: 150,
+    marginBottom: 20,
+  },
+  title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-  },
-  itemContainer: {
-    marginBottom: 15,
-    padding: 10,
-    backgroundColor: '#f9f9f9',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#ddd',
-  },
-  itemName: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    color: '#9c7c38',
   },
   averageText: {
-    marginTop: 20,
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 18,
+    marginVertical: 5,
+    color: '#333',
   },
 });
 

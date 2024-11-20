@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, FlatList, StyleSheet } from 'react-native';
 
 function AddItemsScreen({ route, navigation }) {
-  const { menuItems, setMenuItems } = route.params;
+  const { menuItems, setMenuItems } = route.params;  // Receive menuItems and setMenuItems from params
+
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [course, setCourse] = useState('');
@@ -95,3 +96,5 @@ const styles = StyleSheet.create({
 });
 
 export default AddItemsScreen;
+
+
