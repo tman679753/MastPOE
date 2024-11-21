@@ -1,8 +1,10 @@
+
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, FlatList, StyleSheet } from 'react-native';
+import { Picker } from '@react-native-picker/picker'; // Import Picker
 
 function AddItemsScreen({ route, navigation }) {
-  const { menuItems, setMenuItems } = route.params;  // Receive menuItems and setMenuItems from params
+  const { menuItems, setMenuItems } = route.params; // Receive menuItems and setMenuItems from params
 
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -37,12 +39,19 @@ function AddItemsScreen({ route, navigation }) {
         value={description}
         onChangeText={setDescription}
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Course (Starters/Mains/Desserts)"
-        value={course}
-        onChangeText={setCourse}
-      />
+      <View style={styles.pickerContainer}>
+        <Text style={styles.label}>Course Type:</Text>
+        <Picker
+          selectedValue={course}
+          onValueChange={(value) => setCourse(value)}
+          style={styles.picker}
+        >
+          <Picker.Item label="Select a course" value="" />
+          <Picker.Item label="Starters" value="Starters" />
+          <Picker.Item label="Mains" value="Mains" />
+          <Picker.Item label="Desserts" value="Desserts" />
+        </Picker>
+      </View>
       <TextInput
         style={styles.input}
         placeholder="Price"
@@ -50,8 +59,10 @@ function AddItemsScreen({ route, navigation }) {
         onChangeText={setPrice}
         keyboardType="numeric"
       />
-      <Button title="Add Item" onPress={addItem} 
-      color="#9c7c38"
+      <Button 
+        title="Add Item" 
+        onPress={addItem} 
+        color="#9c7c38" 
       />
       <FlatList
         data={menuItems}
@@ -59,20 +70,24 @@ function AddItemsScreen({ route, navigation }) {
         renderItem={({ item, index }) => (
           <View style={styles.itemContainer}>
             <Text>{item.name}</Text>
-            <Button title="Remove" onPress={() => removeItem(index)} 
-              color="#9c7c38"
-              />
+            <Button 
+              title="Remove" 
+              onPress={() => removeItem(index)} 
+              color="#9c7c38" 
+            />
           </View>
         )}
       />
       <Button 
-      title="Go to Filter Items" onPress={() => navigation.navigate('Filter', { menuItems })} 
-      color="#9c7c38"
-      /> {/* Navigate to FilterScreen */}
-      
-      <Button title="Go Back" onPress={() => navigation.goBack()} 
-        color="#9c7c38"
-        /> {/* Go back to previous screen */}
+        title="Go to Filter Items" 
+        onPress={() => navigation.navigate('Filter', { menuItems })} 
+        color="#9c7c38" 
+      />
+      <Button 
+        title="Go Back" 
+        onPress={() => navigation.goBack()} 
+        color="#9c7c38" 
+      />
     </View>
   );
 }
@@ -94,6 +109,18 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     borderRadius: 5,
   },
+  pickerContainer: {
+    marginVertical: 10,
+  },
+  label: {
+    fontSize: 16,
+    marginBottom: 5,
+  },
+  picker: {
+    borderColor: '#ddd',
+    borderWidth: 1,
+    borderRadius: 5,
+  },
   itemContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -107,5 +134,9 @@ const styles = StyleSheet.create({
 });
 
 export default AddItemsScreen;
+
+
+
+
 
 
