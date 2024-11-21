@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#f8f8f8',
   },
   logo: {
-    width: 150,
-    height: 150,
+    width: 250,
+    height: 250,
     marginBottom: 20,
   },
   title: {
