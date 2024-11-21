@@ -61,7 +61,8 @@ function AddItemsScreen({ route, navigation }) {
           </View>
         )}
       />
-      <Button title="Go Back" onPress={() => navigation.goBack()} />
+      <Button title="Go to Filter Items" onPress={() => navigation.navigate('Filter', { menuItems })} /> {/* Navigate to FilterScreen */}
+      <Button title="Go Back" onPress={() => navigation.goBack()} /> {/* Go back to previous screen */}
     </View>
   );
 }

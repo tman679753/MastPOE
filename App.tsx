@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './homepage'; // JS file
-import AddItemsScreen from './AddItemsScreen'; // JS file
+import HomeScreen from './homepage';  
+import AddItemsScreen from './AddItemsScreen';  
+import FilterScreen from './FilterScreen';  
 
-// Define types for navigation params
 type RootStackParamList = {
   Home: { menuItems: MenuItem[], setMenuItems: React.Dispatch<React.SetStateAction<MenuItem[]>> };
-  Add: undefined;  // Params not needed in Add screen
+  Add: undefined;
+  Filter: { menuItems: MenuItem[] };
 };
 
-// Define menu item type
 type MenuItem = {
   name: string;
   course: string;
@@ -20,7 +20,6 @@ type MenuItem = {
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
-  // State for menu items
   const [menuItems, setMenuItems] = useState<MenuItem[]>([
     { name: 'Salad', course: 'Starters', price: '50' },
     { name: 'Soup', course: 'Starters', price: '30' },
@@ -33,14 +32,15 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        {/* Pass menuItems and setMenuItems to HomeScreen */}
         <Stack.Screen
           name="Home"
           component={HomeScreen}
           initialParams={{ menuItems, setMenuItems }}
         />
         <Stack.Screen name="Add" component={AddItemsScreen} />
+        <Stack.Screen name="Filter" component={FilterScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
+

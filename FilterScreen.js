@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, Button, FlatList, StyleSheet } from 'react-native';
 
-function FilterScreen({ route }) {
-  const { menuItems } = route.params;
+function FilterScreen({ route, navigation }) {
+  const { menuItems } = route.params;  // Receive menuItems from params
   const [filteredItems, setFilteredItems] = useState(menuItems);
   const [selectedCourse, setSelectedCourse] = useState('All');
 
@@ -32,6 +32,7 @@ function FilterScreen({ route }) {
           </View>
         )}
       />
+      <Button title="Go Back to Add Items" onPress={() => navigation.goBack()} /> {/* Go back to AddItemsScreen */}
     </View>
   );
 }

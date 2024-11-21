@@ -11,7 +11,7 @@ function HomeScreen({ route, navigation }) {
         Welcome to Chritofells Delights. Please view the average price of our courses below
       </Text>
 
-      {/* Calculate and display average prices */}
+      {/* Code to calculate and display average prices */}
       {['Starters', 'Mains', 'Desserts'].map((course) => {
         const courseItems = menuItems.filter(item => item.course === course);
         const average = (courseItems.reduce((acc, item) => acc + parseFloat(item.price), 0) / courseItems.length).toFixed(2);
