@@ -20,7 +20,9 @@ function FilterScreen({ route, navigation }) {
       <Text style={styles.header}>Filter Menu Items</Text>
       <View style={styles.filterButtons}>
         {['All', 'Starters', 'Mains', 'Desserts'].map(course => (
-          <Button key={course} title={course} onPress={() => filterByCourse(course)} />
+          <Button key={course} title={course} onPress={() => filterByCourse(course)} 
+          color="#9c7c38"
+          />
         ))}
       </View>
       <FlatList
@@ -32,7 +34,9 @@ function FilterScreen({ route, navigation }) {
           </View>
         )}
       />
-      <Button title="Go Back to Add Items" onPress={() => navigation.goBack()} /> {/* Go back to AddItemsScreen */}
+      <Button title="Go Back to Add Items" onPress={() => navigation.goBack()} 
+        color="#9c7c38"
+        /> {/* Go back to AddItemsScreen */}
     </View>
   );
 }

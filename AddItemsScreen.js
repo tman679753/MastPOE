@@ -50,19 +50,29 @@ function AddItemsScreen({ route, navigation }) {
         onChangeText={setPrice}
         keyboardType="numeric"
       />
-      <Button title="Add Item" onPress={addItem} />
+      <Button title="Add Item" onPress={addItem} 
+      color="#9c7c38"
+      />
       <FlatList
         data={menuItems}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item, index }) => (
           <View style={styles.itemContainer}>
             <Text>{item.name}</Text>
-            <Button title="Remove" onPress={() => removeItem(index)} />
+            <Button title="Remove" onPress={() => removeItem(index)} 
+              color="#9c7c38"
+              />
           </View>
         )}
       />
-      <Button title="Go to Filter Items" onPress={() => navigation.navigate('Filter', { menuItems })} /> {/* Navigate to FilterScreen */}
-      <Button title="Go Back" onPress={() => navigation.goBack()} /> {/* Go back to previous screen */}
+      <Button 
+      title="Go to Filter Items" onPress={() => navigation.navigate('Filter', { menuItems })} 
+      color="#9c7c38"
+      /> {/* Navigate to FilterScreen */}
+      
+      <Button title="Go Back" onPress={() => navigation.goBack()} 
+        color="#9c7c38"
+        /> {/* Go back to previous screen */}
     </View>
   );
 }
