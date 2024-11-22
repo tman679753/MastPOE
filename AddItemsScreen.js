@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, FlatList, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker'; // Import Picker
@@ -134,6 +133,15 @@ const styles = StyleSheet.create({
 });
 
 export default AddItemsScreen;
+
+
+
+
+
+
+
+
+
 
 
 

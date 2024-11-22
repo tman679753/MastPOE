@@ -20,9 +20,7 @@ function FilterScreen({ route, navigation }) {
       <Text style={styles.header}>Filter Menu Items</Text>
       <View style={styles.filterButtons}>
         {['All', 'Starters', 'Mains', 'Desserts'].map(course => (
-          <Button key={course} title={course} onPress={() => filterByCourse(course)} 
-          color="#9c7c38"
-          />
+          <Button key={course} title={course} onPress={() => filterByCourse(course)} color="#9c7c38" />
         ))}
       </View>
       <FlatList
@@ -34,34 +32,22 @@ function FilterScreen({ route, navigation }) {
           </View>
         )}
       />
-      <Button title="Go Back to Add Items" onPress={() => navigation.goBack()} 
-        color="#9c7c38"
-        /> {/* Go back to AddItemsScreen */}
+      <Button title="Go Back to Add Items" onPress={() => navigation.goBack()} color="#9c7c38" />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-  },
-  header: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  filterButtons: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginBottom: 20,
-  },
-  itemContainer: {
-    padding: 10,
-    backgroundColor: '#f9f9f9',
-    marginBottom: 10,
-    borderRadius: 5,
-  },
+  container: { flex: 1, padding: 20 },
+  header: { fontSize: 24, fontWeight: 'bold', marginBottom: 20 },
+  filterButtons: { flexDirection: 'row', justifyContent: 'space-around', marginBottom: 20 },
+  itemContainer: { padding: 10, backgroundColor: '#f9f9f9', marginBottom: 10, borderRadius: 5 },
 });
 
 export default FilterScreen;
+
+
+
+
+
+
